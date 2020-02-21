@@ -12,7 +12,15 @@ public class Teste
     public static void main (){
    
     Ficha1 f = new Ficha1();
-    System.out.println("Exercicios parte 5 ficha 1");
+    Ficha2 f2 = new Ficha2();
+    
+    Scanner input = new Scanner(System.in);
+    
+    System.out.println("Escreva o valor numérico da ficha que pretende verificar");
+    int valor = input.nextInt();
+    while(valor!=0){
+    if(valor==1){
+        System.out.println("Exercicios parte 5 ficha 1");
     
     //exercicio 1
     System.out.println("Exercicio 1: Escreve um valor em graus Celsius (Ex:20,4)");
@@ -26,8 +34,19 @@ public class Teste
     /*
      * A mesma logica aplica se aos restantes exercicios
      */
+    valor =0; //terminar o programa;
 }
-
-
+    if(valor==2){
+    System.out.println("Exercicio Euromilhões");
     
+    f2.gera_jogo();
+    f2.verify_keys();
+    valor=0; //para terminar o programa
+    }
+    else{
+    System.out.println("Ficha ainda não desenvolvida");
+    valor=0;
+    }
+}
+}    
 }    

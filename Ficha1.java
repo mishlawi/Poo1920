@@ -1,5 +1,6 @@
 import java.lang.System;
 import java.time.LocalDate;
+
 /**
  * 
  * 
@@ -10,7 +11,15 @@ import java.time.LocalDate;
  */
 public class Ficha1
 {
-    // pergunta  1
+    //parte 1
+    
+    
+    
+    
+    /* 
+     * PARTE 2
+     pergunta  1
+     */
     public double CparaF(double graus){
     double farnheit = (graus*1.8+32);
     return farnheit;
@@ -61,8 +70,10 @@ public class Ficha1
     return diferenca;
    }
     
+   
 }
-    
+
+   
     
 
 
