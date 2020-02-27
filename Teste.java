@@ -13,6 +13,7 @@ public class Teste
    
     Ficha1 f = new Ficha1();
     Ficha2 f2 = new Ficha2();
+    Ficha3 f3 = new Ficha3();
     
     Scanner input = new Scanner(System.in);
     
@@ -43,10 +44,15 @@ public class Teste
     f2.verify_keys();
     valor=0; //para terminar o programa
     }
+     if (valor==3){
+    System.out.println("CLASSES TRIANGULO E CIRCULO");    
+    valor=0;
+    }
     else{
     System.out.println("Ficha ainda não desenvolvida");
     valor=0;
     }
+   
 }
 }    
 }    
