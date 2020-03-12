@@ -62,7 +62,7 @@ return this.linhasUsadas;
 }
 
 
-public LinhaEncomenda[] getLinEncomenda(){
+private LinhaEncomenda[] getLinEncomenda(){
 
 return this.linhas;
     
