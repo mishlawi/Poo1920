@@ -7,6 +7,6 @@
  */
 public class Ficha3
 {
- // RESOLVIDO AO ELABORAR AS CLASSES CIRCULO E TRIANGULO,
- // usando classe PONTO 
+ // RESOLVIDO AO ELABORAR AS CLASSES CIRCULO,TRIANGULO, ENCOMENDA, LINHA ENCOMENDA e CARRO
+ // usa-se a classe PONTO fornecida pelos docentes da UC
 }
