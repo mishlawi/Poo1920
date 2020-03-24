@@ -1,90 +1,132 @@
 
 /**
- * Escreva a descrição da classe LinhaEncomenda aqui.
- * 
- * @author (seu nome) 
- * @version (número de versão ou data)
+ * Representacao de Linha de Encomenda
+ *
+ * @author MaterialPOO
+ * @version 20180312
+ * @version 20200317
  */
-public class LinhaEncomenda
-{
-   private String nome;
-   private String desc;
-   private double preco;
-   private double qtd;
-   private double taxa;
-   private double desconto;
-//construtor por omissao
-   public LinhaEncomenda(){
-   this.nome = new String();
-   this.desc = new String();
-   this.preco= 0.0;
-   this.qtd  = 0.0;
-   this.taxa = 0.0;
-   this.desconto = 0.0;
-}
-//construtor parameterizado
-    public LinhaEncomenda ( String n, String d, double p, double q, double t, double des){
-    this.nome = n;
-    this.desc = d;
-    this.preco = p;
-    this.qtd = q;
-    this.taxa = t;
-    this.desconto = des;
-}        
-
-
-//construtor por cópia
-
-    public LinhaEncomenda (LinhaEncomenda le){
-    this.nome= le.getNome();
-    this.desc= le.getDescricao();
-    this.preco=le.getPreco();
-    this.qtd = le.getQuantidade();
-    this.taxa = le.getTaxa();
-    this.desconto = le.getDesconto();
-}
-        
-//getters
-
-public String getNome(){
-return this.nome;
-}    
+public class LinhaEncomenda {
+    private String referencia;
+    private String descricao;
+    private double preco;
+    private int quantidade;
+    private double imposto;
+    private double desconto;
     
-public double getPreco(){    
-return this.preco;    
-}
+    public LinhaEncomenda() {
+        this.referencia = "n/a";
+        this.descricao = "n/a";
+        this.preco = 0;
+        this.quantidade = 0;
+        this.imposto = 0;
+        this.desconto = 0;
+    }
+    
+    public LinhaEncomenda(String referencia, String descricao, double preco,
+                int quantidade, double imposto, double desconto) {
+        this.referencia = referencia;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.quantidade = quantidade;
+        this.imposto = imposto;
+        this.desconto = desconto;
+    }
+    
+    public LinhaEncomenda(LinhaEncomenda linha) {
+        this.referencia = linha.getReferencia();
+        this.descricao = linha.getDescricao();
+        this.preco = linha.getPreco();
+        this.quantidade = linha.getQuantidade();
+        this.imposto = linha.getImposto();
+        this.desconto = linha.getDesconto();
+    }
+    
+    /**
+     * B)
+     */
+    public double calculaValorLinhaEnc() {
+        double valor = this.quantidade * this.preco;
+        valor -= valor*this.desconto;
+        valor *= 1+this.imposto;
+        return valor;
+    }
+    
+    /**
+     * C)
+     */
+    public double calculaValorDesconto() {
+        double valor = this.quantidade * this.preco;
+        valor *= this.imposto; //e.g. imposto = 1.06
+        return this.calculaValorLinhaEnc()-valor;
+    }  
+    
+    public String getReferencia() {
+        return this.referencia;
+    }
+    
+     public void setReferencia(String referencia) {
+        this.referencia = referencia;
+    }
 
-public String getDescricao(){
-return this.desc;
-}
-public double getQuantidade(){
-return this.qtd;
-}
-public double getTaxa(){
-return this.taxa;    
+    public String getDescricao() {
+        return this.descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public double getPreco() {
+        return this.preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public int getQuantidade() {
+        return this.quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public double getImposto() {
+        return this.imposto;
+    }
+
+    public void setImposto(double imposto) {
+        this.imposto = imposto;
+    }
+
+    public double getDesconto() {
+        return this.desconto;
+    }
+
+    public void setDesconto(double desconto) {
+        this.desconto = desconto;
+    }
+
+    public LinhaEncomenda clone() {
+        return new LinhaEncomenda(this);
+    }
+    
+    public boolean equals(Object obj) {
+        if(obj==this) return true;
+        if(obj==null || obj.getClass() != this.getClass()) return false;
+        LinhaEncomenda le = (LinhaEncomenda) obj;
+        return le.getReferencia().equals(this.referencia) &&
+              le.getDescricao().equals(this.descricao) && 
+              le.getPreco() == this.preco;
+    }
+    
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Referencia: ").append(this.referencia);
+        //..
+        return sb.toString();
+    }            
     
 }
-public double getDesconto(){
-    
-return this.desconto;    
-}
-
-
-public double calculaValorLinhaEnc(){
-double valor;
-valor = this.qtd*((this.preco-(this.preco*this.desconto))+this.preco*this.taxa);
-
-return valor;
-}
-
-public double calculaValorDesconto(){
-return this.qtd*(this.preco*this.desconto);    
-}
-
-}   
-       
-       
-
-   
-   
-   
