@@ -5,6 +5,10 @@
   *Exercicio do Euromilhoes feito
 -Ficha 3 
   *Exercicios feitos na 3a e 4a aula terminados
+-Aula 5 
+Classe LinhaEncomenda feita
+-Aula 6
+Classe encEficiente para avaliação feita
 
                      
 
