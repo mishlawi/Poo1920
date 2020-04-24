@@ -62,7 +62,7 @@ public class Turma
     }
     
     public Set<String> todosOsCodigos(){
-    return this.alunos.keySet();           
+    return new TreeSet(this.alunos.keySet());           
     }
     
     public int qtsAlunos(){    

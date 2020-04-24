@@ -11,15 +11,17 @@ public class TesteTurma
   Aluno a1 = new Aluno("1", "Zé");
   Aluno a2 = new Aluno ("2", "Ana");
   Aluno a3 = new Aluno ("3", "Tó");
+  AlunoTE a4 = new AlunoTE("4","Simao","DIUM");
 
   Turma t = new Turma();
   t.insereAluno(a1);
   t.insereAluno(a2);
   t.insereAluno(a3);
+  t.insereAluno(a4);
   
   System.out.println("Ordem coleção");
   System.out.print(t.toString());
-  System.out.println("Ordem coleção");
+  System.out.println("Ordem Alfa");
   System.out.println(t.alunosOrdemAlfabetica());
   System.out.println("Ordem coleção");
   System.out.println(t.alunosOrdemAlfabeticaStream());
