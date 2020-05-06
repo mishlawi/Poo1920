@@ -2,7 +2,7 @@ import java.util.Objects;
 
 
 //Duarte Oliveira miei
-public class Veiculo {
+public abstract class Veiculo implements Comparable<Veiculo> {
     private String codigo;
     private String marca;
     private String modelo;
@@ -12,6 +12,7 @@ public class Veiculo {
     private int classificacao;
     private int users;
     private double kms;
+    
 
     public Veiculo(String codigo, String marca, String modelo, int ano, double media, double base, int classificacao, int users, double kms) {
         this.codigo = codigo;
@@ -139,8 +140,19 @@ public class Veiculo {
     public int hashCode() {
         return Objects.hash(codigo, marca, modelo, ano, media, base, classificacao, users, kms);
     }
-
+    /* clone desta forma nao pode ser instanciado visto que a classe é abstrata
     public Veiculo clone() {
         return new Veiculo(this);
+    }
+    */
+
+public abstract Veiculo clone();
+
+public abstract double custoRealKm();
+
+public int compareTo(Veiculo v){
+        if(this.marca.equals(v.getMarca()))
+            return this.modelo.compareTo(v.getModelo());
+        return this.marca.compareTo(v.getMarca());
     }
 }

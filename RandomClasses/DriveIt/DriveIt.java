@@ -1,21 +1,37 @@
-
-
-
-
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.Set;
-
+import java.util.TreeSet;
+import java.util.TreeMap;
+import java.util.Comparator;
+import java.util.Iterator;
 //Duarte Oliveira miei
 
 public class DriveIt 
 {
 Map<String,Veiculo> veiculos= new HashMap<>();
+    boolean promocao;
     
-
+    
+    public DriveIt(){
+    this.veiculos = new HashMap<String,Veiculo>();
+    boolean promocao = false;
+    }
+    
+    public DriveIt(Map<String,Veiculo> v , boolean promo){
+    setVeiculos(v);
+    setPromo(promo);
+    }
+    
+    public DriveIt(DriveIt di){
+    setVeiculos(di.getVeiculos());
+    setPromo(di.getPromo());
+        
+    }
+    
  public Map<String,Veiculo> getVeiculos(){
     Map <String,Veiculo> aux = new HashMap<>();
     for(Map.Entry<String,Veiculo> e:this.veiculos.entrySet())
@@ -28,7 +44,18 @@ Map<String,Veiculo> veiculos= new HashMap<>();
     veic.entrySet().forEach(e-> this.veiculos.put(e.getKey(),
                                                e.getValue().clone()));
     }
-      
+    
+ public boolean getPromo(){
+        return this.promocao;
+ }
+
+    
+ public void setPromo(boolean promo){
+        this.promocao = promo;
+        
+ }
+    
+    
  public boolean existeVeiculo(String cod){
     boolean a = false;
     for(Map.Entry<String,Veiculo> e: this.getVeiculos().entrySet())
@@ -95,6 +122,53 @@ public double custoRealKm(String cod){
 return (((this.getVeiculos().get(cod).getKms())*
 this.getVeiculos().get(cod).getBase())*1.1);  
 }
+
+public void entraEmPromocao(){
+    setPromo(true);
+    for(Veiculo v : this.getVeiculos().values())
+    { if ( v instanceof VeiculoOcasiao)
+        {VeiculoOcasiao vo = (VeiculoOcasiao) v;
+            vo.setPromocao(true);
+        }
+    }
+}
+public void saiDaPromocao(){
+setPromo(false);
+for(Veiculo v : this.getVeiculos().values())
+{
+    if(v instanceof VeiculoOcasiao)
+    {VeiculoOcasiao vo = (VeiculoOcasiao) v;
+        vo.setPromocao(false);
+    }
+}
 }
 
-    
+public Set<Veiculo> ordenarVeiculos(){
+Set<Veiculo> aux = new TreeSet<>(); 
+for(Veiculo v: this.veiculos.values())
+    aux.add(v.clone());
+return aux;
+}
+
+
+public List<Veiculo> ordenaVeiculosLista(){
+    return this.veiculos.values().stream().sorted().map(c->c.clone()).collect(Collectors.toList());
+}
+
+
+private static Map<String,Comparator<Veiculo>> ordem = new TreeMap<>();
+
+
+public void adicionaOrdem (String n, Comparator<Veiculo> c){
+    ordem.put(n,c);
+}
+
+public Iterator<Veiculo> ordenarVeiculo(String criterio)
+{
+Set<Veiculo> aux = new TreeSet<>(ordem.get(criterio));   
+    for(Veiculo v: this.veiculos.values())
+    aux.add(v.clone());
+    return aux.iterator();
+}
+
+}    
